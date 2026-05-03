@@ -54,32 +54,10 @@
     .page {
       max-width: 780px;
       margin: 0 auto;
-      padding: 3rem 2rem 6rem;
+      padding: 2.5rem 2rem 6rem;
       position: relative;
       z-index: 1;
     }
-
-    /* ── Status bar ── */
-    .status {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 3rem;
-    }
-    .status-dot {
-      width: 6px;
-      height: 6px;
-      background: var(--accent);
-      flex-shrink: 0;
-      animation: dotpulse 2.5s ease-in-out infinite;
-    }
-    @keyframes dotpulse {
-      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(200,255,87,0.4); }
       50%       { opacity: 0.75; box-shadow: 0 0 0 5px rgba(200,255,87,0); }
     }
 
@@ -126,7 +104,7 @@
 
     .nav-links {
       display: flex;
-      gap: 0;
+      gap: 6px;
       flex-shrink: 0;
     }
     .nav-links a {
@@ -141,10 +119,10 @@
       text-transform: uppercase;
       padding: 8px 14px;
       border: 1px solid var(--faint);
-      border-right: none;
+      
       transition: color 0.15s, border-color 0.15s, background 0.15s;
     }
-    .nav-links a:last-child { border-right: 1px solid var(--faint); }
+    
     .nav-links a:hover {
       color: var(--accent);
       border-color: var(--accent);
@@ -283,18 +261,11 @@
 <body>
 <main class="page">
 
-  <div class="anim d1">
-    <div class="status">
-      <span class="status-dot"></span>
-      Verfügbar für Praktikum &middot; 01.02. &ndash; 30.07.2027
-    </div>
-  </div>
-
-  <div class="hero anim d2">
+  <div class="hero anim d1">
     <h1>Ömer<br>Isbacar</h1>
     <div class="hero-bottom">
       <p class="tagline">
-        Umschüler zum <strong>Fachinformatiker Systemintegration</strong>
+        Umschüler zum<br><strong>Fachinformatiker Systemintegration</strong>
       </p>
       <nav class="nav-links">
         <a href="https://github.com/oemer-isbacar" target="_blank" rel="noopener">
@@ -309,7 +280,7 @@
     </div>
   </div>
 
-  <div class="section anim d3">
+  <div class="section anim d2">
     <span class="sec-label">über mich</span>
     <div class="sec-content">
       <p class="body-text">
@@ -327,7 +298,7 @@
     </div>
   </div>
 
-  <div class="section anim d4">
+  <div class="section anim d3">
     <span class="sec-label">tools &amp; skills</span>
     <div class="sec-content">
       <div class="tags">
@@ -355,7 +326,7 @@
     </div>
   </div>
 
-  <div class="section anim d5">
+  <div class="section anim d4">
     <span class="sec-label">projekte</span>
     <div class="sec-content">
       <div class="coming-soon">
@@ -366,7 +337,7 @@
     </div>
   </div>
 
-  <footer class="footer anim d6">
+  <footer class="footer anim d5">
     <span>© 2026 Ömer Isbacar</span>
     <span>oemer-isbacar.github.io</span>
   </footer>
