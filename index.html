@@ -6,371 +6,369 @@
   <title>Ömer Isbacar</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        #0e0e0c;
-      --border:    rgba(255,255,255,0.07);
-      --text:      #e8e6e0;
-      --muted:     #6e6d68;
-      --faint:     #3a3935;
-      --accent:    #c8ff57;
-      --font-sans: 'Inter', sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
+      --bg:       #0c0c0a;
+      --bg2:      #141412;
+      --border:   rgba(255,255,255,0.08);
+      --border2:  rgba(255,255,255,0.15);
+      --text:     #eceae3;
+      --muted:    #6e6d68;
+      --faint:    #2e2d2b;
+      --accent:   #c8ff57;
+      --sans:     'Space Grotesk', sans-serif;
+      --mono:     'JetBrains Mono', monospace;
     }
 
-    html { font-size: 16px; scroll-behavior: smooth; }
+    html { font-size: 16px; }
 
     body {
-      background-color: var(--bg);
+      background: var(--bg);
       color: var(--text);
-      font-family: var(--font-sans);
+      font-family: var(--sans);
       font-weight: 400;
-      line-height: 1.7;
+      line-height: 1.6;
       min-height: 100vh;
-      position: relative;
     }
 
+    /* ── Scanlines ── */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
       background-image: repeating-linear-gradient(
         to bottom,
-        transparent,
+        transparent 0px,
         transparent 3px,
-        rgba(255,255,255,0.018) 3px,
-        rgba(255,255,255,0.018) 4px
+        rgba(255,255,255,0.012) 3px,
+        rgba(255,255,255,0.012) 4px
       );
       pointer-events: none;
       z-index: 0;
     }
 
-    body::after {
-      content: '';
-      position: fixed;
-      top: 0; left: 0;
-      width: 60%; height: 55%;
-      background: radial-gradient(ellipse at 15% 0%, rgba(200,255,87,0.045) 0%, transparent 65%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
     .page {
-      max-width: 720px;
+      max-width: 780px;
       margin: 0 auto;
-      padding: 2.5rem 2rem 7rem;
+      padding: 3rem 2rem 6rem;
       position: relative;
       z-index: 1;
     }
 
-    /* ── Status badges ── */
-    .status-wrap {
-      /* Fixed height container so typing animation doesn't shift layout */
-      min-height: 1.4rem;
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-      margin-bottom: 1.25rem;
-    }
-
+    /* ── Status bar ── */
     .status {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      font-family: var(--font-mono);
-      font-size: 10.5px;
-      letter-spacing: 0.12em;
+      gap: 9px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--muted);
-      white-space: nowrap;
+      margin-bottom: 3rem;
     }
     .status-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
+      width: 6px;
+      height: 6px;
       background: var(--accent);
       flex-shrink: 0;
       animation: dotpulse 2.5s ease-in-out infinite;
     }
     @keyframes dotpulse {
-      0%, 100% { box-shadow: 0 0 4px var(--accent); opacity: 1; }
-      50%       { box-shadow: 0 0 14px var(--accent), 0 0 22px rgba(200,255,87,0.25); opacity: 0.8; }
-    }
-    .status-dot.dim {
-      background: var(--muted);
-      box-shadow: none;
-      animation: none;
-    }
-
-    /* Typing animation */
-    .typing-text { overflow: hidden; white-space: nowrap; }
-    #typed-1 {
-      display: inline-block;
-      overflow: hidden;
-      white-space: nowrap;
-      max-width: 0;
-      animation: revealText1 0.9s steps(40, end) 0.3s forwards;
-    }
-    @keyframes revealText1 {
-      from { max-width: 0; }
-      to   { max-width: 420px; }
-    }
-      to   { max-width: 380px; }
-    }
-
-    /* Cursor blink on first line until second starts */
-    #typed-1::after {
-      content: '|';
-      color: var(--accent);
-      animation: blink1 0.7s step-end 0.3s 6 forwards;
-    }
-    @keyframes blink1 {
-      0%, 100% { opacity: 1; }
-      50%       { opacity: 0; }
-    }
-      50%       { opacity: 0; }
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(200,255,87,0.4); }
+      50%       { opacity: 0.75; box-shadow: 0 0 0 5px rgba(200,255,87,0); }
     }
 
     /* ── Hero ── */
+    .hero {
+      border-top: 1px solid var(--border2);
+      padding-top: 2rem;
+      margin-bottom: 0;
+    }
+
     h1 {
-      font-family: 'Inter', sans-serif;
-      font-size: clamp(3.5rem, 13vw, 7rem);
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      line-height: 0.95;
+      font-family: var(--sans);
+      font-size: clamp(4rem, 14vw, 8.5rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 0.92;
+      text-transform: uppercase;
       color: var(--text);
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 2rem;
+      border-bottom: 1px solid var(--border2);
+      padding-bottom: 2rem;
+      flex-wrap: wrap;
     }
 
     .tagline {
-      font-size: 16px;
-      font-weight: 300;
+      font-size: 13px;
       color: var(--muted);
+      font-weight: 400;
+      letter-spacing: 0.02em;
       line-height: 1.6;
-      max-width: 500px;
-      letter-spacing: 0.01em;
+      max-width: 320px;
     }
-    .tagline strong { color: var(--accent); font-weight: 500; }
+    .tagline strong {
+      color: var(--text);
+      font-weight: 500;
+    }
 
-    /* ── Nav links with icons ── */
     .nav-links {
       display: flex;
-      gap: 1.5rem;
-      margin-top: 1.75rem;
-      flex-wrap: wrap;
+      gap: 0;
+      flex-shrink: 0;
     }
     .nav-links a {
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      font-family: var(--font-mono);
-      font-size: 12px;
+      font-family: var(--mono);
+      font-size: 11px;
       color: var(--muted);
       text-decoration: none;
-      letter-spacing: 0.03em;
-      border-bottom: 1px solid var(--faint);
-      padding-bottom: 2px;
-      transition: color 0.2s, border-color 0.2s;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 8px 14px;
+      border: 1px solid var(--faint);
+      border-right: none;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
     }
-    .nav-links a:hover { color: var(--text); border-color: var(--muted); }
+    .nav-links a:last-child { border-right: 1px solid var(--faint); }
+    .nav-links a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: rgba(200,255,87,0.04);
+      z-index: 1;
+    }
     .nav-links a svg {
-      width: 13px; height: 13px;
+      width: 12px; height: 12px;
       fill: currentColor;
       flex-shrink: 0;
     }
 
-    /* ── Divider ── */
-    .divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 3rem 0;
+    /* ── Sections ── */
+    .section {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 0 3rem;
+      border-bottom: 1px solid var(--border);
+      padding: 2.5rem 0;
+      align-items: start;
     }
 
-    /* ── Section label ── */
     .sec-label {
-      display: block;
-      font-family: var(--font-mono);
-      font-size: 10.5px;
-      letter-spacing: 0.12em;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 1.4rem;
+      padding-top: 3px;
+      line-height: 1.8;
     }
+
+    .sec-content { }
 
     /* ── Body text ── */
-    .body-text { font-size: 15px; color: var(--muted); line-height: 1.9; }
+    .body-text {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.85;
+      font-weight: 400;
+    }
     .body-text + .body-text { margin-top: 1em; }
-    .body-text strong { color: var(--text); font-weight: 500; }
+    .body-text strong {
+      color: var(--text);
+      font-weight: 500;
+    }
 
-    /* ── Tags ── */
-    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.1rem; }
+    /* ── Tags — angular blocks ── */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+    }
     .tag {
-      font-family: var(--font-mono);
-      font-size: 11.5px;
+      font-family: var(--mono);
+      font-size: 11px;
       color: var(--muted);
       border: 1px solid var(--faint);
-      padding: 4px 12px;
-      border-radius: 2px;
-      letter-spacing: 0.02em;
-      transition: border-color 0.2s, color 0.2s;
+      padding: 5px 12px;
+      letter-spacing: 0.04em;
+      margin-right: -1px;
+      margin-bottom: -1px;
+      transition: color 0.15s, border-color 0.15s;
+      cursor: default;
     }
-    .tag:hover { border-color: var(--muted); color: var(--text); }
+    .tag:hover {
+      color: var(--text);
+      border-color: var(--border2);
+      z-index: 1;
+      position: relative;
+    }
 
-    /* ── Projekte – Coming Soon ── */
+    /* ── Coming soon ── */
     .coming-soon {
-      padding: 2.5rem 0;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .coming-soon-inner {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
+    }
+    .coming-soon-text {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--faint);
+      white-space: nowrap;
     }
     .coming-soon-line {
       flex: 1;
       height: 1px;
       background: var(--faint);
     }
-    .coming-soon-text {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--faint);
-    }
 
     /* ── Footer ── */
     .footer {
-      margin-top: 4.5rem;
-      font-family: var(--font-mono);
-      font-size: 11px;
+      margin-top: 3rem;
+      font-family: var(--mono);
+      font-size: 10px;
       color: var(--faint);
-      letter-spacing: 0.04em;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    /* ── Fade-in ── */
+    /* ── Animations ── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(14px); }
+      from { opacity: 0; transform: translateY(16px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-    .anim { opacity: 0; animation: fadeUp 0.6s ease forwards; }
+    .anim { opacity: 0; animation: fadeUp 0.5s ease forwards; }
     .d1 { animation-delay: 0.05s; }
-    .d2 { animation-delay: 0.15s; }
-    .d3 { animation-delay: 0.25s; }
-    .d4 { animation-delay: 0.35s; }
-    .d5 { animation-delay: 0.45s; }
-    .d6 { animation-delay: 0.55s; }
-    .d7 { animation-delay: 0.65s; }
+    .d2 { animation-delay: 0.12s; }
+    .d3 { animation-delay: 0.20s; }
+    .d4 { animation-delay: 0.28s; }
+    .d5 { animation-delay: 0.36s; }
+    .d6 { animation-delay: 0.44s; }
 
     /* ── Responsive ── */
     @media (max-width: 600px) {
-      .page { padding: 3rem 1.25rem 5rem; }
-      h1 { font-size: clamp(3rem, 14vw, 5rem); }
-      .nav-links { gap: 1rem; }
-      #typed-1 { animation-name: revealText1Mobile; }
-      @keyframes revealText1Mobile {
-        from { max-width: 0; }
-        to   { max-width: 280px; }
+      .page { padding: 2rem 1.25rem 5rem; }
+      h1 { font-size: clamp(3.5rem, 16vw, 5rem); }
+      .section {
+        grid-template-columns: 1fr;
+        gap: 1rem;
       }
-      @keyframes revealText2Mobile {
-        from { max-width: 0; }
-        to   { max-width: 260px; }
+      .hero-bottom {
+        flex-direction: column;
+        align-items: flex-start;
       }
+      .nav-links { flex-wrap: wrap; }
+      .nav-links a { border-right: 1px solid var(--faint); }
     }
   </style>
 </head>
 <body>
 <main class="page">
 
-  <!-- Status badge -->
-  <div class="status-wrap anim d1">
+  <div class="anim d1">
     <div class="status">
       <span class="status-dot"></span>
-      <span class="typing-text"><span id="typed-1">Verfügbar für Praktikum · 01.02. – 30.07.2027</span></span>
+      Verfügbar für Praktikum &middot; 01.02. &ndash; 30.07.2027
     </div>
   </div>
 
-  <!-- Hero -->
-  <div class="anim d2">
-    <h1>Ömer Isbacar</h1>
-    <p class="tagline">Umschüler zum Fachinformatiker Systemintegration</p>
-    <nav class="nav-links">
-      <a href="https://github.com/oemer-isbacar" target="_blank" rel="noopener">
-        <!-- GitHub icon -->
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-        github
-      </a>
-      <a href="https://www.linkedin.com/in/oemerisbacar/" target="_blank" rel="noopener">
-        <!-- LinkedIn icon -->
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        linkedin
-      </a>
-    </nav>
+  <div class="hero anim d2">
+    <h1>Ömer<br>Isbacar</h1>
+    <div class="hero-bottom">
+      <p class="tagline">
+        Umschüler zum <strong>Fachinformatiker Systemintegration</strong>
+      </p>
+      <nav class="nav-links">
+        <a href="https://github.com/oemer-isbacar" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/oemerisbacar/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+      </nav>
+    </div>
   </div>
 
-  <hr class="divider anim d3" />
-
-  <!-- Über mich -->
-  <section class="anim d3">
-    <span class="sec-label">// über mich</span>
-    <p class="body-text">
-      Seit 2013 bin ich gelernter <strong>Kfz-Mechatroniker</strong> und hab seitdem ausschließlich in der Automobilindustrie gearbeitet. Versuchsfahrzeuge, Prototypenbatterien, Montage bei Porsche. Technik hat mich immer fasziniert, aber irgendwann hat sich der Fokus verschoben.
-    </p>
-    <p class="body-text">
-      Den Anstoß dazu gab mir <strong>Home Assistant</strong>. Ein Raspberry Pi, ein bisschen Smart Home, und plötzlich hab ich gemerkt dass mir diese Art von Technik nicht nur Spaß macht, sondern echte Energie gibt. Ich hab angefangen zu tüfteln, zu lesen, ein eigenes Homelab aufzubauen. Irgendwann war der Entschluss klar: Hobby wird Beruf.
-    </p>
-    <p class="body-text">
-      Seit Anfang 2026 mache ich die <strong>Umschulung zum Fachinformatiker Systemintegration</strong>. Was mich antreibt ist breit gefächert. Netzwerke und Hardware liegen mir im Blut, das ist mein erster Beruf nur in einer anderen Sprache. Security fasziniert mich weil mich die Denkweise dahinter interessiert, nicht weil es gut klingt. Und Linux, Docker, Automatisierung, das ist der Spielplatz.
-    </p>
-    <p class="body-text">
-      Was mich antreibt hat sich eigentlich nie verändert. Dieses Gefühl wenn etwas nicht funktioniert, man sich durchbeißt, und es dann plötzlich doch tut. In der Automobilindustrie war das der Kern meiner Arbeit. In der IT ist das kein Ausnahmefall, das ist der Alltag.
-    </p>
-  </section>
-
-  <hr class="divider anim d4" />
-
-  <!-- Tools & Homelab -->
-  <section class="anim d4">
-    <span class="sec-label">// homelab & tools</span>
-    <div class="tags">
-      <span class="tag">Windows Server</span>
-      <span class="tag">Active Directory</span>
-      <span class="tag">Linux</span>
-      <span class="tag">Netzwerk</span>
-      <span class="tag">TCP/IP</span>
-      <span class="tag">Virtualisierung</span>
-      <span class="tag">Docker</span>
-      <span class="tag">Bash</span>
-      <span class="tag">PowerShell</span>
-      <span class="tag">SQL</span>
-      <span class="tag">Java</span>
-      <span class="tag">Wireshark</span>
-      <span class="tag">Nmap</span>
-      <span class="tag">Kali Linux</span>
-      <span class="tag">Home Assistant</span>
+  <div class="section anim d3">
+    <span class="sec-label">über mich</span>
+    <div class="sec-content">
+      <p class="body-text">
+        Seit 2013 bin ich gelernter <strong>Kfz-Mechatroniker</strong> und hab seitdem ausschließlich in der Automobilindustrie gearbeitet. Versuchsfahrzeuge, Prototypenbatterien, Montage bei Porsche. Technik hat mich immer fasziniert, aber irgendwann hat sich der Fokus verschoben.
+      </p>
+      <p class="body-text">
+        Den Anstoß dazu gab mir <strong>Home Assistant</strong>. Ein Raspberry Pi, ein bisschen Smart Home, und plötzlich hab ich gemerkt dass mir diese Art von Technik nicht nur Spaß macht, sondern echte Energie gibt. Irgendwann war der Entschluss klar: Hobby wird Beruf.
+      </p>
+      <p class="body-text">
+        Seit Anfang 2026 mache ich die <strong>Umschulung zum Fachinformatiker Systemintegration</strong>. Netzwerke und Hardware liegen mir im Blut. Security fasziniert mich weil mich die Denkweise dahinter interessiert. Und Linux, Docker, Automatisierung, das ist der Spielplatz.
+      </p>
+      <p class="body-text">
+        Was mich antreibt hat sich nie verändert. Dieses Gefühl wenn etwas nicht funktioniert, man sich durchbeißt, und es dann plötzlich doch tut. In der Automobilindustrie war das der Kern meiner Arbeit. In der IT ist das kein Ausnahmefall, das ist der Alltag.
+      </p>
     </div>
-  </section>
+  </div>
 
-  <hr class="divider anim d5" />
+  <div class="section anim d4">
+    <span class="sec-label">tools &amp; skills</span>
+    <div class="sec-content">
+      <div class="tags">
+        <span class="tag">Windows Server</span>
+        <span class="tag">Active Directory</span>
+        <span class="tag">Linux</span>
+        <span class="tag">Ubuntu Server</span>
+        <span class="tag">Netzwerk</span>
+        <span class="tag">TCP/IP</span>
+        <span class="tag">VLANs</span>
+        <span class="tag">Virtualisierung</span>
+        <span class="tag">Docker</span>
+        <span class="tag">Bash</span>
+        <span class="tag">PowerShell</span>
+        <span class="tag">SQL</span>
+        <span class="tag">Java</span>
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">Wireshark</span>
+        <span class="tag">Nmap</span>
+        <span class="tag">Kali Linux</span>
+        <span class="tag">Burp Suite</span>
+        <span class="tag">Home Assistant</span>
+      </div>
+    </div>
+  </div>
 
-  <!-- Projekte -->
-  <section class="anim d5">
-    <span class="sec-label">// projekte</span>
-    <div class="coming-soon">
-      <div class="coming-soon-inner">
+  <div class="section anim d5">
+    <span class="sec-label">projekte</span>
+    <div class="sec-content">
+      <div class="coming-soon">
         <div class="coming-soon-line"></div>
         <span class="coming-soon-text">Kommt in Kürze</span>
         <div class="coming-soon-line"></div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <footer class="footer anim d7">
-    © 2026 Ömer Isbacar
+  <footer class="footer anim d6">
+    <span>© 2026 Ömer Isbacar</span>
+    <span>oemer-isbacar.github.io</span>
   </footer>
 
 </main>
